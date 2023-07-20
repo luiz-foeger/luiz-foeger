@@ -5,7 +5,7 @@ I'm a beginner programming student at the Federal Institute of Espírito Santo.
 📫 Email: luizffsan5@gmail.com <br>
 
 <div align="center">
-  <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&show_icons=true&locale=en" alt="luiz-foeger" height="180"></p>
+  <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&show_icons=true&locale=en" alt="luiz-foeger" height="175"></p>
 </div>
 
 <div align="center">
