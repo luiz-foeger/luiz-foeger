@@ -2,8 +2,8 @@
 I'm a beginner programming student at the Federal Institute of Espírito Santo.
 
 **Contact:** <br>
-📫 Email: luizffsan5@gmail.com
-instagram.com/luizfoeger
+📫 Email: luizffsan5@gmail.com <br>
+https://tinyurl.com/luizfoeger
 
 <div align-items="center">
   <img align="center" alt="JavaScript" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
