@@ -13,5 +13,5 @@ Contact: <br>
 </div>     
 
 <div>
-</p><p>&nbsp;<img align="right" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&show_icons=true&locale=en" alt="luiz-foeger" /></p>
+</p><p>&nbsp;<img align="left" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&show_icons=true&locale=en" alt="luiz-foeger" /></p>
 </div>
