@@ -1,6 +1,6 @@
 
 <div align="center">
-  <p>&nbsp;<img align="center" color="black" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&show_icons=true&locale=en" alt="luiz-foeger" height="175"></p>
+  <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&theme=midnight-purple&show_icons=true&locale=en" alt="luiz-foeger" height="175"></p>
 </div>
 
 ##
