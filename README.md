@@ -1,11 +1,9 @@
-<div align="center">
-Hey! My name is Luiz Felipe and I'm 18 years old! <br>
-I'm a beginner programming student at the Federal Institute of Espírito Santo. <br><br> 
-</div>
+### Hey! My name is Luiz Felipe and I'm 18 years old!
+I'm a beginner programming student at the Federal Institute of Espírito Santo.
+<br><br>
 
 <div align="center">
-  <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&theme=github_dark&show_icons=true&locale=en" alt="luiz-foeger" height="175"></p>
-</div>
+<p>&nbsp;<img align="center" height="175" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&theme=github_dark&show_icons=true&locale=pt-br" alt="luiz-foeger" /></p>
 
 <div align="center">
   <a href = "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript"><img align="center" alt="JavaScript" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
