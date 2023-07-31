@@ -1,7 +1,7 @@
-
-                                            Hey! My name is Luiz Felipe and I'm 18 years old!
-                               I'm a beginner programming student at the Federal Institute of Espírito Santo.
-<br>
+<div align="center">
+Hey! My name is Luiz Felipe and I'm 18 years old! <br>
+I'm a beginner programming student at the Federal Institute of Espírito Santo. <br><br> 
+</div>
 
 <div align="center">
   <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&theme=github_dark&show_icons=true&locale=en" alt="luiz-foeger" height="175"></p>
