@@ -1,11 +1,12 @@
 ### Hey! My name is Luiz Felipe and I'm 18 years old!
 I'm a beginner programming student at the Federal Institute of Espírito Santo.
-<br><br>
 
 <div> 
 <a href = "mailto:luizffsan5@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank" height="25"></a>
 <a href="https://instagram.com/luizfoeger" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank" height="25"></a>
-</div>  
+</div>
+
+<br>
 
 <div align="center">
 <p>&nbsp;<img align="center" height="175" src="https://github-readme-stats.vercel.app/api?username=luiz-foeger&theme=github_dark&show_icons=true&locale=pt-br" alt="luiz-foeger" /></p>
