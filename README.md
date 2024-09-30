@@ -1,10 +1,13 @@
-### Eai! Me chamo Luiz Felipe e tenho 19 anos!
-Sou estudante de programação no Instituto Federal do Espírito Santo em busca de progredir na área.
+### Olá! 👋 Me chamo Luiz Felipe e tenho 19 anos! 
+#### — Atualmente, sou estudante de Tecnologia em Sistemas para Internet no Instituto Federal do Espírito Santo (IFES), com foco em Desenvolvimento Web. Estou em busca de expandir meus conhecimentos e me profissionalizar na área!
+###
 
 <div> 
-<a href = "mailto:luizffsan5@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank" height="25"></a>
-<a href="https://instagram.com/luizfoeger" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank" height="25"></a>
-</div><br>
+  <a href = "mailto:foegerluiz@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank" height="26"></a>
+  <a href="https://instagram.com/luizfoeger" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank" height="26"></a>
+  <a href="https://www.linkedin.com/in/luiz-foeger" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank" height="26"></a> 
+</div>
+<br><br>
 
 <div align="center">
 <p>
@@ -19,7 +22,9 @@ Sou estudante de programação no Instituto Federal do Espírito Santo em busca 
       <img align="center" alt="JavaScript" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
       <img align="center" alt="HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
       <img align="center" alt="CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
-      <img align="center" alt="Photoshop" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg">
+      <img align="center" alt="React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
       <img align="center" alt="Behance" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/behance/behance-original.svg">
+      <img align="center" alt="Photoshop" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg">
     </p>
 </div>
+
