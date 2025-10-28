@@ -1,11 +1,8 @@
 ### Olá! 👋 Me chamo Luiz Felipe e tenho 20 anos! 
-
-
 #### — Atualmente, sou estudante de Tecnologia em Sistemas para Internet no Instituto Federal do Espírito Santo (IFES), com foco em Desenvolvimento Web. Estou em busca de expandir meus conhecimentos e me profissionalizar na área!
 ###
 
 ![FÖEGER HEADER](https://github.com/user-attachments/assets/df0c9a34-142b-45a7-b4c0-cf38c24ed44d)
-
 
 <div> 
   <a href = "mailto:foegerluiz@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank" height="26"></a>
@@ -31,8 +28,6 @@
       <img align="center" alt="Photoshop" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg">            <img align="center" alt="Behance" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/behance/behance-original.svg">
     </p>
 </div>
-
-<br></br>
 
 <div align="center">
 <p>
