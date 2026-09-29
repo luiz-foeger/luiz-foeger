@@ -3,11 +3,10 @@
 </p>
 
 <p align="center">
-  <a href="mailto:foegerluiz@gmail.com"><img src="https://img.shields.io/badge/say_hi-000000?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
-  <a href="https://instagram.com/foeger.dev"><img src="https://img.shields.io/badge/@foeger.dev-000000?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
-  <!-- <a href="https://wa.me/5527997649105"><img src="https://img.shields.io/badge/whatsapp-000000?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp"></a> -->
-  <!-- <a href="https://www.linkedin.com/in/SEU-USUARIO"><img src="https://img.shields.io/badge/linkedin-000000?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a> -->
-  <!-- <a href="https://www.behance.net/SEU-USUARIO"><img src="https://img.shields.io/badge/portfolio-000000?style=for-the-badge&logo=behance&logoColor=white" alt="Behance"></a> -->
+  <a href="https://luizfoeger.vercel.app"><img src="./assets/link-portfolio.svg" width="24%" alt="Portfolio"></a>
+  <a href="https://linkedin.com/in/luizfoeger"><img src="./assets/link-linkedin.svg" width="24%" alt="LinkedIn"></a>
+  <a href="mailto:foegerluiz@gmail.com"><img src="./assets/link-email.svg" width="24%" alt="Email"></a>
+  <a href="https://instagram.com/foeger.dev"><img src="./assets/link-instagram.svg" width="24%" alt="Instagram"></a>
 </p>
 
 <br>
