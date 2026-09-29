@@ -90,8 +90,12 @@ ${rowsB.map(([lb, , ic], i) => `  <g class="row" style="animation-delay:${delays
     ${ic.map((n, j) => icon(n, ix + j * (ICON + GAP), Y(i) - ICON / 2, ICON)).join('\n    ')}
   </g>`).join('\n')}`;
 
-  // números à direita: frentes e ferramentas são contados das linhas acima
-  const YEARS = '3+';
+  // números à direita: anos contados desde START; frentes e ferramentas contadas das linhas acima.
+  // A Action .github/workflows/update-stats.yml roda isto todo dia 1 e commita só se o número mudar.
+  const START = new Date(2023, 5, 1);     // início: junho de 2023 (primeiro commit no GitHub)
+  const now = new Date();
+  const full = now.getFullYear() - START.getFullYear() - (now < new Date(now.getFullYear(), START.getMonth(), START.getDate()) ? 1 : 0);
+  const YEARS = `${full}+`;
   const tools = rowsB.reduce((n, [, , ic]) => n + ic.length, 0);
   const stats = [[YEARS, 'years building'], [rowsB.length, 'fronts'], [tools, 'tools']];
   const statsSvg = `
