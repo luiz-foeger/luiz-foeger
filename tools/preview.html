@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile Simulation</title>
+<style>
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --border:#3d444d; --soft:#151b23; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 -apple-system,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif; }
+  .top { height:64px; border-bottom:1px solid var(--border); background:#010409; display:flex; align-items:center; padding:0 24px; gap:12px; color:var(--muted); }
+  .top b { color:var(--fg); }
+  .wrap { max-width:1280px; margin:0 auto; padding:24px; display:flex; gap:24px; }
+  aside { width:296px; flex-shrink:0; }
+  aside img { width:296px; height:296px; border-radius:50%; border:1px solid var(--border); object-fit:cover; background:#222; }
+  aside h1 { margin:16px 0 0; font-size:24px; line-height:1.25; font-weight:600; }
+  aside .login { color:var(--muted); font-size:20px; font-weight:300; }
+  aside .bio { margin:16px 0; font-size:16px; }
+  aside .btn { display:block; text-align:center; padding:5px; border:1px solid var(--border); border-radius:6px; background:#212830; font-weight:500; }
+  aside .meta { color:var(--muted); margin-top:16px; }
+  main { flex:1; min-width:0; }
+  .card { border:1px solid var(--border); border-radius:6px; padding:24px; }
+  .card .path { font:12px ui-monospace,Consolas,monospace; color:var(--fg); margin-bottom:16px; }
+  .md { font-size:16px; line-height:1.5; }
+  .md p { margin:0 0 16px; }
+  .md img { max-width:100%; vertical-align:middle; }
+  .md h2 { font-size:1.5em; font-weight:600; border-bottom:1px solid #3d444db3; padding-bottom:.3em; margin:24px 0 16px; }
+  .md code { font:85% ui-monospace,Consolas,monospace; background:#656c7633; padding:.2em .4em; border-radius:6px; }
+  .md h2 code { font-size:85%; }
+  .md blockquote { margin:0 0 16px; padding:0 1em; color:var(--muted); border-left:.25em solid var(--border); }
+  .md blockquote strong { color:var(--muted); }
+  .md table { border-collapse:collapse; margin-bottom:16px; display:block; width:max-content; max-width:100%; overflow:auto; }
+  .md td, .md th { border:1px solid var(--border); padding:6px 13px; }
+  .md tr:nth-child(2n) { background:var(--soft); }
+  .md details summary { cursor:pointer; }
+  .md ul { padding-left:2em; margin:0 0 16px; }
+  .md sub { font-size:75%; }
+  .note { margin-top:8px; color:var(--muted); font-size:12px; text-align:center; font-style:italic; }
+  @media (max-width: 900px) { .wrap { flex-direction:column; } aside { width:100%; } aside img { width:120px; height:120px; } }
+</style></head>
+<body>
+<div class="top"><b>GitHub</b> / luiz-foeger</div>
+<div class="wrap">
+  <aside>
+    <img src="https://github.com/luiz-foeger.png" alt="">
+    <h1>Luiz Felipe Föeger dos Santos</h1>
+    <div class="login">luiz-foeger</div>
+    <div class="bio">Developer &amp; Designer</div>
+    <div class="btn">Edit profile</div>
+    <div class="meta">👥 <b style="color:var(--fg)">14</b> followers · <b style="color:var(--fg)">17</b> following</div>
+  </aside>
+  <main>
+    <div class="card">
+      <div class="path">luiz-foeger / README<span style="color:var(--muted)">.md</span></div>
+      <div class="md">
+<!-- preenchido pelo script abaixo com o README.md -->
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+  fetch('/README.md?' + Date.now()).then(r => r.text()).then(md => {
+    document.querySelector('.md').innerHTML = md.split('./assets/').join('/assets/').split('.svg"').join('.svg?' + Date.now() + '"');
+  });
+</script>
+</body></html>
