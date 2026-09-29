@@ -6,6 +6,7 @@ Geradores dos SVGs do README do perfil. Nada aqui aparece no perfil.
 node tools/build-header.js    # assets/header.svg  (logo, cursor, console.log(contact))
 node tools/build-journey.js   # assets/journey.svg (teia de branches + ícones)
 node tools/build-links.js     # assets/link-*.svg  (cards de link abaixo do header)
+node tools/build-light.js     # assets/light/*.svg (versões do tema claro; rodar por último)
 node tools/serve.js           # simulação do perfil em http://localhost:5599
 ```
 

@@ -34,6 +34,11 @@
   .md sub { font-size:75%; }
   .note { margin-top:8px; color:var(--muted); font-size:12px; text-align:center; font-style:italic; }
   @media (max-width: 900px) { .wrap { flex-direction:column; } aside { width:100%; } aside img { width:120px; height:120px; } }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --border:#d1d9e0; --soft:#f6f8fa; }
+    .top { background:#f6f8fa; }
+    aside .btn { background:#f6f8fa; }
+  }
 </style></head>
 <body>
 <div class="top"><b>GitHub</b> / luiz-foeger</div>
