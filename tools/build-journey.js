@@ -89,8 +89,21 @@ ${rowsB.map(([lb, , ic], i) => `  <g class="row" style="animation-delay:${delays
     <text x="${labelX}" y="${Y(i) + FONT * .35}" font-size="${FONT}" fill="#6b6b6b">${lb}:</text>
     ${ic.map((n, j) => icon(n, ix + j * (ICON + GAP), Y(i) - ICON / 2, ICON)).join('\n    ')}
   </g>`).join('\n')}`;
-  const labelB = label.replace('infra (Docker, Azure DevOps, Keycloak)', 'infra &amp; tools (Docker, Azure DevOps, Keycloak / RHBK, Git, VS Code, Visual Studio)');
-  const svg = shell(Y(4) + 44, labelB, body, W, true, TITLE);
+
+  // números à direita: frentes e ferramentas são contados das linhas acima
+  const YEARS = '3+';
+  const tools = rowsB.reduce((n, [, , ic]) => n + ic.length, 0);
+  const stats = [[YEARS, 'years building'], [rowsB.length, 'fronts'], [tools, 'tools']];
+  const statsSvg = `
+  <line x1="640" y1="92" x2="640" y2="310" stroke="#1a1a1a"/>
+${stats.map(([n, l], i) => `  <g class="row" style="animation-delay:${(2.2 + i * .2).toFixed(1)}s">
+    <text x="${W - 32}" y="${132 + i * 78}" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700">${n}</text>
+    <text x="${W - 32}" y="${154 + i * 78}" font-size="12" fill="#6b6b6b" text-anchor="end">${l}</text>
+  </g>`).join('\n')}`;
+
+  const labelB = label.replace('infra (Docker, Azure DevOps, Keycloak)', 'infra &amp; tools (Docker, Azure DevOps, Keycloak / RHBK, Git, VS Code, Visual Studio)')
+    .replace(' · open to new projects', ` · ${YEARS} years building, ${rowsB.length} fronts, ${tools} tools · open to new projects`);
+  const svg = shell(Y(4) + 44, labelB, body + statsSvg, W, true, TITLE);
   fs.writeFileSync(path.join(__dirname, '..', 'assets', 'journey.svg'), svg);
 }
 

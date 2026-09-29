@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 344" width="830" height="344" role="img" aria-label="Started in design (Figma, Photoshop) · backend (JavaScript, .NET) · frontend (HTML, CSS, React, Tailwind CSS) · fullstack (TypeScript, Next.js, Node.js) · infra &amp; tools (Docker, Azure DevOps, Keycloak / RHBK, Git, VS Code, Visual Studio) · open to new projects">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 344" width="830" height="344" role="img" aria-label="Started in design (Figma, Photoshop) · backend (JavaScript, .NET) · frontend (HTML, CSS, React, Tailwind CSS) · fullstack (TypeScript, Next.js, Node.js) · infra &amp; tools (Docker, Azure DevOps, Keycloak / RHBK, Git, VS Code, Visual Studio) · 3+ years building, 5 fronts, 17 tools · open to new projects">
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
     .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw linear forwards; }
@@ -152,5 +152,18 @@
 </linearGradient>
 </defs>
 </svg>
+  </g>
+  <line x1="640" y1="92" x2="640" y2="310" stroke="#1a1a1a"/>
+  <g class="row" style="animation-delay:2.2s">
+    <text x="798" y="132" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700">3+</text>
+    <text x="798" y="154" font-size="12" fill="#6b6b6b" text-anchor="end">years building</text>
+  </g>
+  <g class="row" style="animation-delay:2.4s">
+    <text x="798" y="210" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700">5</text>
+    <text x="798" y="232" font-size="12" fill="#6b6b6b" text-anchor="end">fronts</text>
+  </g>
+  <g class="row" style="animation-delay:2.6s">
+    <text x="798" y="288" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700">17</text>
+    <text x="798" y="310" font-size="12" fill="#6b6b6b" text-anchor="end">tools</text>
   </g>
 </svg>
