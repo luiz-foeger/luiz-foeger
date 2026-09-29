@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 64" width="200" height="64" role="img" aria-label="email">
-  <rect x=".5" y=".5" width="199" height="63" rx="12" fill="#0a0a0a" stroke="#1f1f1f"/>
-  <g transform="translate(66.4 23) scale(0.75)" fill="#ffffff"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></g>
-  <text x="94.4" y="37.04" font-family="Inter, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#e6e6e6">email</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207.5 64" width="207.5" height="64" role="img" aria-label="email">
+  <rect x="5.50" y=".5" width="199" height="63" rx="12" fill="#0a0a0a" stroke="#1f1f1f"/>
+  <g transform="translate(68.5 23) scale(0.75)" fill="#ffffff"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></g>
+  <text x="96.5" y="36.68" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.2" fill="#ffffff">EMAIL</text>
 </svg>
