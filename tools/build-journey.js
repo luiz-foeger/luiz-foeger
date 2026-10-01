@@ -58,8 +58,7 @@ const shell = (H, label, body, W = 900, open = false, ts = 13) => `<svg xmlns="h
   </style>
 
   <rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="16" fill="#0a0a0a" stroke="#1f1f1f"/>
-  <text x="32" y="40" font-size="${ts}" fill="#6b6b6b"><tspan fill="#4a4a4a">~/luiz-foeger $ </tspan><tspan fill="#a8a8a8">git log --graph --author=luiz</tspan></text>
-  <line x1="32" y1="60" x2="${W - 32}" y2="60" stroke="#1a1a1a"/>${open ? `
+  ${open ? `
   <g class="row" style="animation-delay:2.1s">
     <text x="${W - 32}" y="40" font-size="${ts}" fill="#ffffff" text-anchor="end">open to new projects</text>
   </g>` : ''}
@@ -78,7 +77,7 @@ const label = 'Started in design (Figma, Photoshop) · backend (JavaScript, .NET
   const ICON = 38, GAP = 10;              // ícones
   const G = 0.9;                          // escala da teia (1 = tamanho anterior)
   const STEP = 50;                        // distância entre linhas na tela
-  const Y0 = 100, gx = 48;                // primeira linha / início da teia
+  const Y0 = 52, gx = 100;                // primeira linha / início da teia (anos à esquerda)
   const Y = (i) => Y0 + i * STEP;
   const labelX = gx + 90 * G + 44, ix = labelX + 128;
   const rowsB = rows.map((r, i) => i === 4 ? ['infra &amp; tools', null, ['docker', 'azure', 'keycloak', 'git', 'vscode', 'visualstudio']] : r);
@@ -100,15 +99,20 @@ ${rowsB.map(([lb, , ic], i) => `  <g class="row" style="animation-delay:${delays
   const tools = rowsB.reduce((n, [, , ic]) => n + ic.length, 0);
   const stats = [[YEARS, 'years building'], [rowsB.length, 'fronts'], [tools, 'tools']];
   const statsSvg = `
-  <line x1="640" y1="92" x2="640" y2="310" stroke="#1a1a1a"/>
+  <line x1="656" y1="${Y0 - 12}" x2="656" y2="${Y(4) + 12}" stroke="#1a1a1a"/>
 ${stats.map(([n, l], i) => `  <g class="row" style="animation-delay:${(2.2 + i * .2).toFixed(1)}s">
-    <text x="${W - 32}" y="${132 + i * 78}" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700">${n}</text>
-    <text x="${W - 32}" y="${154 + i * 78}" font-size="12" fill="#6b6b6b" text-anchor="end">${l}</text>
+    <text x="${W - 32}" y="${Y0 + 32 + i * 78}" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700">${n}</text>
+    <text x="${W - 32}" y="${Y0 + 54 + i * 78}" font-size="12" fill="#6b6b6b" text-anchor="end">${l}</text>
   </g>`).join('\n')}`;
 
+  const yearsSvg = `
+  <g class="row" style="animation-delay:${delays[0]}s"><text x="32" y="${Y(0) + 4}" font-size="12" fill="#6b6b6b">${START.getFullYear()}</text></g>
+  <g class="row" style="animation-delay:${delays[4]}s"><text x="32" y="${Y(4) + 4}" font-size="12" fill="#ffffff">${now.getFullYear()}</text></g>`;
+
   const labelB = label.replace('infra (Docker, Azure DevOps, Keycloak)', 'infra &amp; tools (Docker, Azure DevOps, Keycloak / RHBK, Git, VS Code, Visual Studio)')
-    .replace(' · open to new projects', ` · ${YEARS} years building, ${rowsB.length} fronts, ${tools} tools · open to new projects`);
-  const svg = shell(Y(4) + 44, labelB, body + statsSvg, W, true, TITLE);
+    .replace('Started in design', `${START.getFullYear()}: started in design`)
+    .replace(' · open to new projects', ` · ${now.getFullYear()}: ${YEARS} years building, ${rowsB.length} fronts, ${tools} tools`);
+  const svg = shell(Y(4) + 44, labelB, body + statsSvg + yearsSvg, W, false, TITLE);
   fs.writeFileSync(path.join(__dirname, '..', 'assets', 'journey.svg'), svg);
 }
 
