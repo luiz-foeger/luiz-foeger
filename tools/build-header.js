@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const out = path.join(__dirname, '..', 'assets');
+const { FAMILY, bold } = require('./font');
 
 const letters = [
   { id: 'f',       d: 'M0.52832 94.6189L44.5283 735.119L278.528 648.619L232.028 435.619L394.528 413.119L363.028 267.119L205.528 312.619L185.528 233.119L431.028 214.119L424.528 0.618896L0.52832 94.6189Z' },
@@ -56,7 +57,8 @@ const logo = [
 
 const header = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="föeger.">
   <style>
-    .sans  { font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif; }
+    ${bold}
+    .sans  { font-family: ${FAMILY}; }
     .place { transform-box: fill-box; transform-origin: center; }
     .draw  { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s ease-in-out .3s forwards, gone .6s ease-out 2.3s forwards; }
     .fill  { transform-box: fill-box; transform-origin: center bottom; opacity: 0; animation: fade .7s ease-out forwards, hop .7s ease-in-out; }
@@ -97,7 +99,7 @@ ${logo}
         <path d="M0 0 L0 18 L4.8 13.4 L8 20.4 L10.8 19.2 L7.7 12.3 L14 12.3 Z" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.4" stroke-linejoin="round"/>
       </g>
       <rect x="14" y="20" width="42" height="20" rx="5" fill="#ffffff"/>
-      <text x="35" y="34" class="sans" font-size="12" font-weight="600" fill="#0a0a0a" text-anchor="middle">luiz</text>
+      <text x="35" y="34" class="sans" font-size="12" font-weight="700" fill="#0a0a0a" text-anchor="middle">luiz</text>
     </g>
   </g>
 </svg>

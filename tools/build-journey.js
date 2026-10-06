@@ -2,6 +2,7 @@
 // Uso: node tools/build-journey.js
 const fs = require('fs');
 const path = require('path');
+const { FAMILY, DISPLAY, regular, display } = require('./font');
 
 // ---- ícones do skillicons.dev embutidos (sem depender de URL externa) ----
 const icon = (name, x, y, size) => {
@@ -43,7 +44,10 @@ const graph = (s, delays) => {
 
 const shell = (H, label, body, W = 900, open = false, ts = 13) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${label}">
   <style>
-    text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    ${regular}
+    ${display}
+    text { font-family: ${FAMILY}; }
+    .num { font-family: ${DISPLAY}; }
     .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw linear forwards; }
     .dot  { transform-box: fill-box; transform-origin: center; transform: scale(0); animation: pop .35s cubic-bezier(.3,1.6,.5,1) forwards; }
     .row  { opacity: 0; animation: in .45s ease-out forwards; }
@@ -85,7 +89,7 @@ const label = 'Started in design (Figma, Photoshop) · backend (JavaScript, .NET
 ${graph(STEP / G, delays)}
   </g>
 ${rowsB.map(([lb, , ic], i) => `  <g class="row" style="animation-delay:${delays[i]}s">
-    <text x="${labelX}" y="${Y(i) + FONT * .35}" font-size="${FONT}" fill="#6b6b6b">${lb}:</text>
+    <text x="${labelX}" y="${Y(i) + FONT * .35}" font-size="${FONT}" fill="#6b6b6b">${lb}</text>
     ${ic.map((n, j) => icon(n, ix + j * (ICON + GAP), Y(i) - ICON / 2, ICON)).join('\n    ')}
   </g>`).join('\n')}`;
 
@@ -101,7 +105,7 @@ ${rowsB.map(([lb, , ic], i) => `  <g class="row" style="animation-delay:${delays
   const statsSvg = `
   <line x1="656" y1="${Y0 - 12}" x2="656" y2="${Y(4) + 12}" stroke="#1a1a1a"/>
 ${stats.map(([n, l], i) => `  <g class="row" style="animation-delay:${(2.2 + i * .2).toFixed(1)}s">
-    <text x="${W - 32}" y="${Y0 + 32 + i * 78}" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700">${n}</text>
+    <text x="${W - 32}" y="${Y0 + 32 + i * 78}" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700" class="num">${n}</text>
     <text x="${W - 32}" y="${Y0 + 54 + i * 78}" font-size="12" fill="#6b6b6b" text-anchor="end">${l}</text>
   </g>`).join('\n')}`;
 
