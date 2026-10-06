@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://luizfoeger.vercel.app"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/light/header.svg"><img src="./assets/header.svg" width="100%" alt="föeger. — instagram @foeger.dev · foegerluiz@gmail.com"></picture></a>
+  <a href="https://luizfoeger.vercel.app"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/light/header.svg"><img src="./assets/header.svg" width="100%" alt="föeger."></picture></a>
 </p>
 
 <p align="center">
