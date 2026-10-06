@@ -42,11 +42,15 @@ const tip = [Math.round(dotX + 2), Math.round(dotY + 2)];  // ponta do cursor so
 const rest = [tip[0] + 36, tip[1] + 27];                   // ao lado do ponto, sem encostar na logo
 const carry = [((from[0] - tip[0]) / S).toFixed(0), ((from[1] - tip[1]) / S).toFixed(0)];
 
+// ---------- onda: depois que o ponto encaixa, cada letra dá um pulinho (o quique da queda) e termina no ponto ----------
+const wave = { f: 0, oBody: 1, oDotL: 1.6, oDotR: 1.8, eTop: 2, g: 3, eBottom: 4, r: 5, dot: 6 };  // pinguinhos do ö logo depois do o
+const hop = (l) => (4.45 + wave[l.id] * .08).toFixed(2);
+
 const place = (l) => { const [x, y, r] = inline[l.id]; return `class="place" style="transform: translate(${x}px, ${y}px) rotate(${r}deg)"`; };
 const rule = (l) => (l.evenodd ? ' fill-rule="evenodd"' : '');
 const logo = [
   ...letters.filter(l => l.id !== 'dot').map(l => `    <g ${place(l)}><path class="draw" fill="none" stroke="#ffffff" stroke-width="${SW}" pathLength="1" d="${l.d}"/></g>`),
-  ...letters.filter(l => l.id !== 'dot').map(l => `    <g ${place(l)}><path class="fill" fill="#ffffff"${rule(l)} d="${l.d}"/></g>`),
+  ...letters.filter(l => l.id !== 'dot').map(l => `    <g ${place(l)}><path class="fill" style="animation-delay: 1.9s, ${hop(l)}s" fill="#ffffff"${rule(l)} d="${l.d}"/></g>`),
   `    <g ${place(dot)}><path class="carry" fill="#ffffff" d="${dot.d}"/></g>`,
 ].join('\n');
 
@@ -55,8 +59,8 @@ const header = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" w
     .sans  { font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif; }
     .place { transform-box: fill-box; transform-origin: center; }
     .draw  { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s ease-in-out .3s forwards, gone .6s ease-out 2.3s forwards; }
-    .fill  { opacity: 0; animation: fade .7s ease-out 1.9s forwards; }
-    .carry { transform-box: fill-box; transform-origin: center; opacity: 0; animation: carry 1.4s cubic-bezier(.45,.05,.3,1) 2.5s forwards, drop .35s cubic-bezier(.3,1.6,.5,1) 3.95s; }
+    .fill  { transform-box: fill-box; transform-origin: center bottom; opacity: 0; animation: fade .7s ease-out forwards, hop .7s ease-in-out; }
+    .carry { transform-box: fill-box; transform-origin: center; opacity: 0; animation: carry 1.4s cubic-bezier(.45,.05,.3,1) 2.5s forwards, drop .35s cubic-bezier(.3,1.6,.5,1) 3.95s, hop .7s ease-in-out ${hop(dot)}s; }
     .cursor { opacity: 0; animation: cursor 1.4s cubic-bezier(.45,.05,.3,1) 2.5s forwards, away .8s cubic-bezier(.45,.05,.3,1) 4.35s forwards; }
     .click  { transform-box: fill-box; transform-origin: 0 0; animation: click .25s ease-in-out 3.95s; }
     .float  { animation: float 4s ease-in-out 5.4s infinite; }
@@ -65,6 +69,7 @@ const header = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" w
     @keyframes gone   { to { opacity: 0; } }
     @keyframes carry  { 0% { opacity: 0; transform: translate(${carry[0]}px, ${carry[1]}px) scale(.9); } 20% { opacity: 1; } 100% { opacity: 1; transform: none; } }
     @keyframes drop   { 50% { transform: scale(1.18); } }
+    @keyframes hop    { 30% { transform: translateY(-90px) scaleY(1.04); } 58% { transform: translateY(0) scaleY(.94); } 74% { transform: translateY(-24px); } 88% { transform: translateY(0); } }
     @keyframes cursor { 0% { opacity: 0; transform: translate(${from[0]}px, ${from[1]}px); } 20% { opacity: 1; } 100% { opacity: 1; transform: translate(${tip[0]}px, ${tip[1]}px); } }
     @keyframes away   { from { opacity: 1; transform: translate(${tip[0]}px, ${tip[1]}px); } to { opacity: 1; transform: translate(${rest[0]}px, ${rest[1]}px); } }
     @keyframes click  { 50% { transform: scale(.82); } }
