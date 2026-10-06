@@ -10,4 +10,8 @@
   <picture><source media="(prefers-color-scheme: light)" srcset="./assets/light/journey.svg"><img src="./assets/journey.svg" width="100%" alt="From 2023 to today: design (Figma, Photoshop) · backend (JavaScript, .NET) · frontend (HTML, CSS, React, Tailwind CSS) · fullstack (TypeScript, Next.js, Node.js) · infra &amp; tools (Docker, Azure DevOps, Keycloak / RHBK, Git, VS Code, Visual Studio)"></picture>
 </p>
 
+<p align="center">
+  <picture><source media="(prefers-color-scheme: light)" srcset="./assets/light/note.svg"><img src="./assets/note.svg" width="100%" alt="Design and development, end to end. Nothing is lost between concept and product. Open to new projects: SaaS, branding &amp; interfaces."></picture>
+</p>
+
 
