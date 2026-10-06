@@ -7,7 +7,7 @@ const { FAMILY, regular, bold } = require('./font');
 const ABOUT = 'Connecting design and development, from concept to product.';
 const OPEN = 'Open to new projects', WHAT = 'SaaS, branding &amp; interfaces';
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 52" width="830" height="52" role="img" aria-label="${ABOUT} ${OPEN}: ${WHAT}.">
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 46" width="830" height="46" role="img" aria-label="${ABOUT} ${OPEN}: ${WHAT}.">
   <style>${regular} ${bold} text { font-family: ${FAMILY}; }</style>
   <text x="415" y="18" font-size="14" fill="#a8a8a8" text-anchor="middle">${ABOUT}</text>
   <text x="415" y="42" font-size="13" fill="#6b6b6b" text-anchor="middle"><tspan fill="#e0e0e0" font-weight="700">${OPEN}</tspan>: ${WHAT}</text>
