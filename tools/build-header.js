@@ -38,6 +38,7 @@ const n = dot.d.match(/[\d.]+/g).map(Number);
 const xs = n.filter((_, i) => i % 2 === 0), ys = n.filter((_, i) => i % 2 === 1);
 const dotX = X + (110 + (Math.min(...xs) + Math.max(...xs)) / 2 + inline.dot[0]) * S;
 const dotY = Y + (-260 + (Math.min(...ys) + Math.max(...ys)) / 2 + inline.dot[1]) * S;
+const CURSOR = 1.3;                                        // tamanho do ponteiro e da tag "luiz"
 const from = [1100, 330];                                  // entra pelo canto inferior direito
 const tip = [Math.round(dotX + 2), Math.round(dotY + 2)];  // ponta do cursor sobre o ponto
 const rest = [tip[0] + 36, tip[1] + 27];                   // ao lado do ponto, sem encostar na logo
@@ -94,13 +95,13 @@ ${logo}
 
   <!-- multiplayer cursor: traz o ponto final -->
   <g class="cursor">
-    <g class="float">
+    <g class="float"><g transform="scale(${CURSOR})">
       <g class="click">
         <path d="M0 0 L0 18 L4.8 13.4 L8 20.4 L10.8 19.2 L7.7 12.3 L14 12.3 Z" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.4" stroke-linejoin="round"/>
       </g>
       <rect x="14" y="20" width="42" height="20" rx="5" fill="#ffffff"/>
       <text x="35" y="34" class="sans" font-size="12" font-weight="700" fill="#0a0a0a" text-anchor="middle">luiz</text>
-    </g>
+    </g></g>
   </g>
 </svg>
 `;
