@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: light)" srcset="./assets/light/note.svg"><img src="./assets/note.svg" width="100%" alt="Design and development, end to end. Nothing is lost between concept and product. Open to new projects: SaaS, branding &amp; interfaces."></picture>
+  <picture><source media="(prefers-color-scheme: light)" srcset="./assets/light/note.svg"><img src="./assets/note.svg" width="100%" alt="Connecting design and development, from concept to product. Open to new projects: SaaS, branding &amp; interfaces."></picture>
 </p>
 
 

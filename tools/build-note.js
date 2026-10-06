@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { FAMILY, regular, bold } = require('./font');
 
-const ABOUT = 'Design and development, end to end. Nothing is lost between concept and product.';
+const ABOUT = 'Connecting design and development, from concept to product.';
 const OPEN = 'Open to new projects', WHAT = 'SaaS, branding &amp; interfaces';
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 52" width="830" height="52" role="img" aria-label="${ABOUT} ${OPEN}: ${WHAT}.">
