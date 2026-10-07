@@ -1,6 +1,6 @@
 name: update stats
 
-# Recalcula o "N+ years building" do journey. O número muda uma vez por ano;
+# Recalcula o "N+ years building" do journey. O número muda duas vezes por ano (3, 3+, 4…);
 # rodar todo mês garante que a mudança entre no máximo um mês depois e que uma falha se corrija sozinha.
 on:
   schedule:
@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   build:
@@ -29,3 +30,9 @@ jobs:
             git commit -am "chore: update years building"
             git push
           fi
+      # Em repo público o GitHub desliga o agendamento após 60 dias sem atividade, e aqui só há commit
+      # quando o número muda. Reativar o próprio workflow a cada execução zera essa contagem, sem commit.
+      - name: keep the schedule alive
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/update-stats.yml/enable"
+        env:
+          GH_TOKEN: ${{ github.token }}
