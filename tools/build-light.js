@@ -10,6 +10,7 @@ fs.mkdirSync(out, { recursive: true });
 
 // escuro → claro (fundos viram claros, textos e a logo viram escuros)
 const LIGHT = {
+  '#050505': '#ececec', '#e5e5e5': '#ffffff', '#3b3b3b': '#f7f7f7', '#020202': '#ececec', '#8e8e8e': '#ffffff', '#6e6e6e': '#f7f7f7',  // fundo grafite
   '#0a0a0a': '#ffffff', '#101010': '#f6f6f6', '#111111': '#f4f4f4', '#141414': '#f2f2f2',
   '#1a1a1a': '#ececec', '#1b1b1b': '#eaeaea', '#1f1f1f': '#e4e4e4', '#262626': '#dedede', '#2a2a2a': '#dadada',
   '#2e2e2e': '#d4d4d4', '#333333': '#cfcfcf', '#3a3a3a': '#c4c4c4', '#3f3f3f': '#bdbdbd',

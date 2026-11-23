@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const out = path.join(__dirname, '..', 'assets');
-const { FAMILY, bold } = require('./font');
+const { bg, LUZ, PENUMBRA, SOMBRA } = require('./graphite');
 
 const letters = [
   { id: 'f',       d: 'M0.52832 94.6189L44.5283 735.119L278.528 648.619L232.028 435.619L394.528 413.119L363.028 267.119L205.528 312.619L185.528 233.119L431.028 214.119L424.528 0.618896L0.52832 94.6189Z' },
@@ -23,8 +23,8 @@ const inline = {
   g: [1100, -250, -2], eBottom: [1100, -250, 2], r: [1120, -250, -2], dot: [1120, -250, 2],
 };
 
-// ---------- layout: logo centralizada no banner 1200×300 ----------
-const W = 560;                          // largura em linha ≈ 2533 → 560px
+// ---------- layout: logo centralizada no banner 1200×300 (fundo grafite, como o banner do LinkedIn) ----------
+const W = 440;                          // largura em linha ≈ 2533 → 440px (37% do banner, a proporção da frase do LinkedIn)
 const S = W / 2533;
 const X = (1200 - W) / 2;
 const Y = (300 - 843 * S) / 2;          // altura em linha ≈ 843
@@ -32,76 +32,33 @@ const tx = (X + 110 * S).toFixed(1);    // bbox em linha começa em x = -110
 const ty = (Y - 260 * S).toFixed(1);    // e em y = 260
 const SW = (1.3 / S).toFixed(1);        // traço do contorno ≈ 1.3px na tela
 
-// ---------- cursor: traz o ponto final, solta e sai para o lado ----------
-const dot = letters.find(l => l.id === 'dot');
-const n = dot.d.match(/[\d.]+/g).map(Number);
-const xs = n.filter((_, i) => i % 2 === 0), ys = n.filter((_, i) => i % 2 === 1);
-const dotX = X + (110 + (Math.min(...xs) + Math.max(...xs)) / 2 + inline.dot[0]) * S;
-const dotY = Y + (-260 + (Math.min(...ys) + Math.max(...ys)) / 2 + inline.dot[1]) * S;
-const CURSOR = 1.3;                                        // tamanho do ponteiro e da tag "luiz"
-const from = [1100, 330];                                  // entra pelo canto inferior direito
-const tip = [Math.round(dotX + 2), Math.round(dotY + 2)];  // ponta do cursor sobre o ponto
-const rest = [tip[0] + 36, tip[1] + 27];                   // ao lado do ponto, sem encostar na logo
-const carry = [((from[0] - tip[0]) / S).toFixed(0), ((from[1] - tip[1]) / S).toFixed(0)];
-
-// ---------- onda: depois que o ponto encaixa, cada letra dá um pulinho (o quique da queda) e termina no ponto ----------
-const wave = { f: 0, oBody: 1, oDotL: 1.6, oDotR: 1.8, eTop: 2, g: 3, eBottom: 4, r: 5, dot: 6 };  // pinguinhos do ö logo depois do o
-const hop = (l) => (4.45 + wave[l.id] * .08).toFixed(2);
-
 const place = (l) => { const [x, y, r] = inline[l.id]; return `class="place" style="transform: translate(${x}px, ${y}px) rotate(${r}deg)"`; };
 const rule = (l) => (l.evenodd ? ' fill-rule="evenodd"' : '');
 const logo = [
-  ...letters.filter(l => l.id !== 'dot').map(l => `    <g ${place(l)}><path class="draw" fill="none" stroke="#ffffff" stroke-width="${SW}" pathLength="1" d="${l.d}"/></g>`),
-  ...letters.filter(l => l.id !== 'dot').map(l => `    <g ${place(l)}><path class="fill" style="animation-delay: 1.9s, ${hop(l)}s" fill="#ffffff"${rule(l)} d="${l.d}"/></g>`),
-  `    <g ${place(dot)}><path class="carry" fill="#ffffff" d="${dot.d}"/></g>`,
+  ...letters.map(l => `    <g ${place(l)}><path class="draw" fill="none" stroke="#ffffff" stroke-width="${SW}" pathLength="1" d="${l.d}"/></g>`),
+  ...letters.map(l => `    <g ${place(l)}><path class="fill" fill="#ffffff"${rule(l)} d="${l.d}"/></g>`),
 ].join('\n');
 
 const header = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="föeger.">
   <style>
-    ${bold}
-    .sans  { font-family: ${FAMILY}; }
     .place { transform-box: fill-box; transform-origin: center; }
     .draw  { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s ease-in-out .3s forwards, gone .6s ease-out 2.3s forwards; }
-    .fill  { transform-box: fill-box; transform-origin: center bottom; opacity: 0; animation: fade .7s ease-out forwards, hop .7s ease-in-out; }
-    .carry { transform-box: fill-box; transform-origin: center; opacity: 0; animation: carry 1.4s cubic-bezier(.45,.05,.3,1) 2.5s forwards, drop .35s cubic-bezier(.3,1.6,.5,1) 3.95s, hop .7s ease-in-out ${hop(dot)}s; }
-    .cursor { opacity: 0; animation: cursor 1.4s cubic-bezier(.45,.05,.3,1) 2.5s forwards, away .8s cubic-bezier(.45,.05,.3,1) 4.35s forwards; }
-    .click  { transform-box: fill-box; transform-origin: 0 0; animation: click .25s ease-in-out 3.95s; }
-    .float  { animation: float 4s ease-in-out 5.4s infinite; }
-    @keyframes draw   { to { stroke-dashoffset: 0; } }
-    @keyframes fade   { to { opacity: 1; } }
-    @keyframes gone   { to { opacity: 0; } }
-    @keyframes carry  { 0% { opacity: 0; transform: translate(${carry[0]}px, ${carry[1]}px) scale(.9); } 20% { opacity: 1; } 100% { opacity: 1; transform: none; } }
-    @keyframes drop   { 50% { transform: scale(1.18); } }
-    @keyframes hop    { 30% { transform: translateY(-90px) scaleY(1.04); } 58% { transform: translateY(0) scaleY(.94); } 74% { transform: translateY(-24px); } 88% { transform: translateY(0); } }
-    @keyframes cursor { 0% { opacity: 0; transform: translate(${from[0]}px, ${from[1]}px); } 20% { opacity: 1; } 100% { opacity: 1; transform: translate(${tip[0]}px, ${tip[1]}px); } }
-    @keyframes away   { from { opacity: 1; transform: translate(${tip[0]}px, ${tip[1]}px); } to { opacity: 1; transform: translate(${rest[0]}px, ${rest[1]}px); } }
-    @keyframes click  { 50% { transform: scale(.82); } }
-    @keyframes float  { 50% { transform: translate(-5px, 4px); } }
+    .fill  { opacity: 0; animation: fade .7s ease-out 1.9s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes fade { to { opacity: 1; } }
+    @keyframes gone { to { opacity: 0; } }
     @media (prefers-reduced-motion: reduce) {
       .draw { opacity: 0; animation: none; }
-      .fill, .carry { opacity: 1; animation: none; }
-      .cursor { opacity: 1; transform: translate(${rest[0]}px, ${rest[1]}px); animation: none; }
-      .click, .float { animation: none; }
+      .fill { opacity: 1; animation: none; }
     }
   </style>
 
-  <!-- canvas -->
-  <rect x=".5" y=".5" width="1199" height="299" rx="16" fill="#0a0a0a" stroke="#1f1f1f"/>
+  <!-- canvas: preto, a luz desfocada no canto e o grão (tools/graphite.js) -->
+  ${bg(0, 0, 1200, 300, 16, [[1076, 15, 250, 91, LUZ], [871, 288, 227, 91, PENUMBRA], [197, 288, 288, 197, SOMBRA], [1212, 0, 182, 152, SOMBRA]])}
 
-  <!-- logo: vetores do portfolio; o contorno se desenha e é preenchido, ainda sem o ponto final -->
+  <!-- logo: vetores do portfolio; o contorno se desenha e é preenchido -->
   <g transform="translate(${tx} ${ty}) scale(${S.toFixed(5)})">
 ${logo}
-  </g>
-
-  <!-- multiplayer cursor: traz o ponto final -->
-  <g class="cursor">
-    <g class="float"><g transform="scale(${CURSOR})">
-      <g class="click">
-        <path d="M0 0 L0 18 L4.8 13.4 L8 20.4 L10.8 19.2 L7.7 12.3 L14 12.3 Z" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.4" stroke-linejoin="round"/>
-      </g>
-      <rect x="14" y="20" width="42" height="20" rx="5" fill="#ffffff"/>
-      <text x="35" y="34" class="sans" font-size="12" font-weight="700" fill="#0a0a0a" text-anchor="middle">luiz</text>
-    </g></g>
   </g>
 </svg>
 `;

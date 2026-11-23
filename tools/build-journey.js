@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { FAMILY, DISPLAY, regular, display } = require('./font');
+const { bg, LUZ_SUAVE } = require('./graphite');
 
 // ---- ícones do skillicons.dev embutidos (sem depender de URL externa) ----
 const icon = (name, x, y, size) => {
@@ -61,7 +62,7 @@ const shell = (H, label, body, W = 900, open = false, ts = 13) => `<svg xmlns="h
     }
   </style>
 
-  <rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="16" fill="#0a0a0a" stroke="#1f1f1f"/>
+  ${bg(0, 0, W, H, 16, [[770, -138, 150, 110, LUZ_SUAVE]])}  <!-- grafite: a mesma luz dos cards de link, chegando fraca -->
   ${open ? `
   <g class="row" style="animation-delay:2.1s">
     <text x="${W - 32}" y="40" font-size="${ts}" fill="#ffffff" text-anchor="end">open to new projects</text>
@@ -78,9 +79,9 @@ const label = 'Started in design (Figma, Photoshop) · backend (JavaScript, .NET
 {
   const W = 830;
   const FONT = 13, TITLE = 13;            // nomes das frentes / título
-  const ICON = 38, GAP = 10;              // ícones
+  const ICON = 34, GAP = 10;              // ícones
   const G = 0.9;                          // escala da teia (1 = tamanho anterior)
-  const STEP = 50;                        // distância entre linhas na tela
+  const STEP = 46;                        // distância entre linhas na tela
   const Y0 = 52, gx = 100;                // primeira linha / início da teia (anos à esquerda)
   const Y = (i) => Y0 + i * STEP;
   const labelX = gx + 90 * G + 44, ix = labelX + 128;
@@ -103,10 +104,10 @@ ${rowsB.map(([lb, , ic], i) => `  <g class="row" style="animation-delay:${delays
   const tools = rowsB.reduce((n, [, , ic]) => n + ic.length, 0);
   const stats = [[YEARS, 'years building'], [rowsB.length, 'fronts'], [tools, 'tools']];
   const statsSvg = `
-  <line x1="656" y1="${Y0 - 12}" x2="656" y2="${Y(4) + 12}" stroke="#1a1a1a"/>
+  <line x1="656" y1="${Y0 - 12}" x2="656" y2="${Y(4) + 12}" stroke="#ffffff" stroke-opacity=".12"/>  <!-- branco translúcido: o mesmo contraste sobre a luz e sobre o preto -->
 ${stats.map(([n, l], i) => `  <g class="row" style="animation-delay:${(2.2 + i * .2).toFixed(1)}s">
-    <text x="${W - 32}" y="${Y0 + 32 + i * 78}" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700" class="num">${n}</text>
-    <text x="${W - 32}" y="${Y0 + 54 + i * 78}" font-size="12" fill="#6b6b6b" text-anchor="end">${l}</text>
+    <text x="${W - 32}" y="${Y0 + 30 + i * 74}" font-size="34" fill="#ffffff" text-anchor="end" font-weight="700" class="num">${n}</text>
+    <text x="${W - 32}" y="${Y0 + 52 + i * 74}" font-size="12" fill="#6b6b6b" text-anchor="end">${l}</text>
   </g>`).join('\n')}`;
 
   const yearsSvg = `
