@@ -23,23 +23,27 @@ const inline = {
   g: [1100, -250, -2], eBottom: [1100, -250, 2], r: [1120, -250, -2], dot: [1120, -250, 2],
 };
 
-// ---------- layout: logo centralizada no banner 1200×300 (fundo grafite, como o banner do LinkedIn) ----------
-const W = 440;                          // largura em linha ≈ 2533 → 440px (37% do banner, a proporção da frase do LinkedIn)
-const S = W / 2533;
-const X = (1200 - W) / 2;
-const Y = (300 - 843 * S) / 2;          // altura em linha ≈ 843
-const tx = (X + 110 * S).toFixed(1);    // bbox em linha começa em x = -110
-const ty = (Y - 260 * S).toFixed(1);    // e em y = 260
-const SW = (1.3 / S).toFixed(1);        // traço do contorno ≈ 1.3px na tela
-
+// ---------- layout: logo centralizada no banner (fundo grafite, como o banner do LinkedIn) ----------
+// computador: 1200×300 com a logo em 440 (37%, a proporção da frase do LinkedIn);
+// celular (assets/mobile): 600×300 com a logo em 420, para ela continuar grande numa tela estreita.
 const place = (l) => { const [x, y, r] = inline[l.id]; return `class="place" style="transform: translate(${x}px, ${y}px) rotate(${r}deg)"`; };
 const rule = (l) => (l.evenodd ? ' fill-rule="evenodd"' : '');
-const logo = [
-  ...letters.map(l => `    <g ${place(l)}><path class="draw" fill="none" stroke="#ffffff" stroke-width="${SW}" pathLength="1" d="${l.d}"/></g>`),
-  ...letters.map(l => `    <g ${place(l)}><path class="fill" fill="#ffffff"${rule(l)} d="${l.d}"/></g>`),
-].join('\n');
 
-const header = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="föeger.">
+const banner = (CW, CH, W) => {
+  const S = W / 2533;                     // largura em linha ≈ 2533
+  const X = (CW - W) / 2;
+  const Y = (CH - 843 * S) / 2;           // altura em linha ≈ 843
+  const tx = (X + 110 * S).toFixed(1);    // bbox em linha começa em x = -110
+  const ty = (Y - 260 * S).toFixed(1);    // e em y = 260
+  const SW = (1.3 / S).toFixed(1);        // traço do contorno ≈ 1.3px na tela
+  const logo = [
+    ...letters.map(l => `    <g ${place(l)}><path class="draw" fill="none" stroke="#ffffff" stroke-width="${SW}" pathLength="1" d="${l.d}"/></g>`),
+    ...letters.map(l => `    <g ${place(l)}><path class="fill" fill="#ffffff"${rule(l)} d="${l.d}"/></g>`),
+  ].join('\n');
+  // a composição do banner (luz, penumbra e duas sombras), proporcional ao tamanho do quadro
+  const luz = [[.897 * CW, .05 * CH, .833 * CH, .303 * CH, LUZ], [.726 * CW, .96 * CH, .757 * CH, .303 * CH, PENUMBRA],
+    [.164 * CW, .96 * CH, .96 * CH, .657 * CH, SOMBRA], [1.01 * CW, 0, .607 * CH, .507 * CH, SOMBRA]].map((m) => m.map((v) => (typeof v === 'number' ? Math.round(v) : v)));
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CW} ${CH}" width="${CW}" height="${CH}" role="img" aria-label="föeger.">
   <style>
     .place { transform-box: fill-box; transform-origin: center; }
     .draw  { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s ease-in-out .3s forwards, gone .6s ease-out 2.3s forwards; }
@@ -54,7 +58,7 @@ const header = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" w
   </style>
 
   <!-- canvas: preto, a luz desfocada no canto e o grão (tools/graphite.js) -->
-  ${bg(0, 0, 1200, 300, 16, [[1076, 15, 250, 91, LUZ], [871, 288, 227, 91, PENUMBRA], [197, 288, 288, 197, SOMBRA], [1212, 0, 182, 152, SOMBRA]])}
+  ${bg(0, 0, CW, CH, 16, luz)}
 
   <!-- logo: vetores do portfolio; o contorno se desenha e é preenchido -->
   <g transform="translate(${tx} ${ty}) scale(${S.toFixed(5)})">
@@ -62,6 +66,9 @@ ${logo}
   </g>
 </svg>
 `;
+};
 
-fs.writeFileSync(path.join(out, 'header.svg'), header);
-console.log('assets/header.svg ok');
+fs.mkdirSync(path.join(out, 'mobile'), { recursive: true });
+fs.writeFileSync(path.join(out, 'header.svg'), banner(1200, 300, 440));
+fs.writeFileSync(path.join(out, 'mobile', 'header.svg'), banner(600, 300, 420));
+console.log('assets/header.svg ok (+ mobile)');

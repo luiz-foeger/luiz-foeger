@@ -62,7 +62,7 @@ const shell = (H, label, body, W = 900, open = false, ts = 13) => `<svg xmlns="h
     }
   </style>
 
-  ${bg(0, 0, W, H, 16, [[770, -138, 150, 110, LUZ_SUAVE]])}  <!-- grafite: a mesma luz dos cards de link, chegando fraca -->
+  ${bg(0, 0, W, H, 16, [[W - 60, -138, 150, 110, LUZ_SUAVE]])}  <!-- grafite: a mesma luz dos cards de link, chegando fraca -->
   ${open ? `
   <g class="row" style="animation-delay:2.1s">
     <text x="${W - 32}" y="40" font-size="${ts}" fill="#ffffff" text-anchor="end">open to new projects</text>
@@ -119,6 +119,28 @@ ${stats.map(([n, l], i) => `  <g class="row" style="animation-delay:${(2.2 + i *
     .replace(' · open to new projects', ` · ${now.getFullYear()}: ${YEARS} years building, ${rowsB.length} fronts, ${tools} tools`);
   const svg = shell(Y(4) + 44, labelB, body + statsSvg + yearsSvg, W, false, TITLE);
   fs.writeFileSync(path.join(__dirname, '..', 'assets', 'journey.svg'), svg);
+
+  // ---- celular (assets/mobile): 400 de largura, o nome da frente em cima dos ícones e os números numa linha embaixo ----
+  {
+    const W = 400, G = 0.7, STEP = 68, Y0 = 44, gx = 70, cx = 150, IC = 28, IG = 6;
+    const Y = (i) => Y0 + i * STEP;
+    const body = `  <g transform="translate(${(gx - 60 * G).toFixed(1)} ${(Y0 - 90 * G).toFixed(1)}) scale(${G})">
+${graph(STEP / G, delays)}
+  </g>
+${rowsB.map(([lb, , ic], i) => `  <g class="row" style="animation-delay:${delays[i]}s">
+    <text x="${cx}" y="${Y(i) + 5}" font-size="14" fill="#8a8a8a">${lb}</text>
+    ${ic.map((n, j) => icon(n, cx + j * (IC + IG), Y(i) + 14, IC)).join('\n    ')}
+  </g>`).join('\n')}
+  <g class="row" style="animation-delay:${delays[0]}s"><text x="20" y="${Y(0) + 5}" font-size="13" fill="#6b6b6b">${START.getFullYear()}</text></g>
+  <g class="row" style="animation-delay:${delays[4]}s"><text x="20" y="${Y(4) + 5}" font-size="13" fill="#ffffff">${now.getFullYear()}</text></g>
+  <line x1="20" y1="${Y(4) + 72}" x2="${W - 20}" y2="${Y(4) + 72}" stroke="#ffffff" stroke-opacity=".12"/>
+${stats.map(([n, l], i) => `  <g class="row" style="animation-delay:${(2.2 + i * .2).toFixed(1)}s">
+    <text x="${(W / 6) * (1 + i * 2)}" y="${Y(4) + 116}" font-size="32" fill="#ffffff" text-anchor="middle" font-weight="700" class="num">${n}</text>
+    <text x="${(W / 6) * (1 + i * 2)}" y="${Y(4) + 138}" font-size="13" fill="#6b6b6b" text-anchor="middle">${l}</text>
+  </g>`).join('\n')}`;
+    fs.mkdirSync(path.join(__dirname, '..', 'assets', 'mobile'), { recursive: true });
+    fs.writeFileSync(path.join(__dirname, '..', 'assets', 'mobile', 'journey.svg'), shell(Y(4) + 162, labelB, body, W));
+  }
 }
 
-console.log('assets/journey.svg ok');
+console.log('assets/journey.svg ok (+ mobile)');

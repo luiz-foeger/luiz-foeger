@@ -5,6 +5,7 @@
 // No README os <a> ficam colados, sem espaço entre eles, senão o GitHub insere um vão extra.
 // Fundo grafite (tools/graphite.js): uma luz só, acima do canto direito da fileira, mais forte no último card e alargada
 // para a esquerda (como a do header e a do journey).
+// Celular (assets/mobile): o mesmo card, alto, com o ícone em cima e o nome embaixo, para ler numa coluna estreita.
 // Ícones: Simple Icons (CC0) para Gmail e Instagram; globo e LinkedIn desenhados.
 const fs = require('fs');
 const path = require('path');
@@ -42,5 +43,16 @@ icons.forEach(([name, glyph], i) => {
 </svg>
 `;
   fs.writeFileSync(path.join(out, `link-${name}.svg`), svg);
+
+  const MH = 150, MI = 56, MF = 24, cx = x + CARD / 2;
+  const mobile = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${SLOT} ${MH}" width="${SLOT}" height="${MH}" role="img" aria-label="${name}">
+  <style>${semibold} text { font-family: ${FAMILY}; }</style>
+  ${bg(+x.toFixed(2), 0, CARD, MH, 16, [[770 - i * SLOT, -80, 150, 110, LUZ_FRACA, 1.8]])}
+  <g transform="translate(${(cx - MI / 2).toFixed(1)} 30) scale(${MI / 24})" fill="#ffffff">${glyph}</g>
+  <text x="${cx.toFixed(1)}" y="${MH - 30}" font-size="${MF}" font-weight="600" letter-spacing="${-MF * .02}" text-anchor="middle" fill="#ffffff">${label}</text>
+</svg>
+`;
+  fs.mkdirSync(path.join(out, 'mobile'), { recursive: true });
+  fs.writeFileSync(path.join(out, 'mobile', `link-${name}.svg`), mobile);
 });
-console.log('assets/link-*.svg ok');
+console.log('assets/link-*.svg ok (+ mobile)');

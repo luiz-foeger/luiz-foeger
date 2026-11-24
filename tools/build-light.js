@@ -2,6 +2,9 @@
 // Uso: node tools/build-light.js   (rodar depois dos outros build-*.js)
 // O README usa <picture>: o GitHub mostra a versão clara para quem usa o tema claro.
 // Os ícones coloridos embutidos (<svg x=...> internos do journey) não são alterados.
+// Celular (assets/mobile): o README só troca pela largura da tela, porque o GitHub reescreve a regra inteira das fontes
+// com prefers-color-scheme quando a pessoa fixa um tema. Por isso o tema claro do celular vai dentro do próprio SVG:
+// as mesmas trocas, em CSS, valendo quando o aparelho está no claro.
 const fs = require('fs');
 const path = require('path');
 const src = path.join(__dirname, '..', 'assets');
@@ -30,4 +33,16 @@ const toLight = (svg) => svg
 for (const f of fs.readdirSync(src).filter((f) => f.endsWith('.svg'))) {
   fs.writeFileSync(path.join(out, f), toLight(fs.readFileSync(path.join(src, f), 'utf8')));
 }
-console.log('assets/light/*.svg ok');
+// celular: o tema do aparelho dentro do SVG (refeito a cada rodada, sem duplicar)
+const mobile = path.join(src, 'mobile');
+const trocas = [...Object.entries(LIGHT), ...Object.entries(SHORT)];
+const css = trocas.map(([de, para]) => ['fill', 'stroke', 'stop-color'].map((p) => `[${p}="${de}" i]:not(svg svg *){${p}:${para}}`).join('')).join('');
+const tema = `<style data-tema="aparelho">@media (prefers-color-scheme: light){${css}}</style>`;
+if (fs.existsSync(mobile)) {
+  for (const f of fs.readdirSync(mobile).filter((f) => f.endsWith('.svg'))) {
+    const svg = fs.readFileSync(path.join(mobile, f), 'utf8').replace(/<style data-tema="aparelho">[\s\S]*?<\/style>\n?/, '');
+    const fim = svg.lastIndexOf('</svg>');
+    fs.writeFileSync(path.join(mobile, f), `${svg.slice(0, fim)}${tema}\n${svg.slice(fim)}`);
+  }
+}
+console.log('assets/light/*.svg ok (+ tema do aparelho em assets/mobile)');
